@@ -4,17 +4,13 @@
 # por pantalla. Si el fichero no existe debe mostrar un mensaje
 #  por pantalla informando de ello.
 import os
+def verificar(nombre):
+    nombre = ("tabla-" + str(n) + ".txt")
+    if os.path.isfile(nombre):
+        file = open(nombre, "r")
+        print(file.read())
+        file.close()
+    else:
+        print("¡El fichero", nombre, "no existe!")
 n = int(input("Introduce un numero entero del 1 al 10: "))
-nombre = ("tabla-" + str(n) + ".txt")
-if os.path.isfile(nombre):
-    file = open(nombre, "r")
-    print(file.read())
-else:
-    print("¡El fichero", nombre, "no existe!")
-
-
-
-"""with open(nombre, "w") as file:
-    for i in range(1, 11):
-        file.write(str(i)+ "x"+ str(n)+ "="+ str(i * n) + "\n")
-    file.close()"""
+verificar(n)
