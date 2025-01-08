@@ -1,12 +1,19 @@
 import csv
 import os
 
+
 def leer_calificaciones(fichero):
-    """Lee las calificaciones desde un fichero y las devuelve como una lista de diccionarios"""
+    """Lee las calificaciones desde un fichero y las devuelve como una lista de diccionarios ordenada por apellido"""
     if os.path.isfile(fichero):
         with open(fichero, "r") as file:
             lector = csv.DictReader(file)
-            lista = sorted([dict(row) for row in lector], key=lambda x: x["Apellido"])
+            lista = [dict(row) for row in lector]
+            
+            for i in range(len(lista)):
+                for j in range(len(lista) - 1):
+                    if lista[j]["Apellido"] > lista[j + 1]["Apellido"]:
+                        lista[j], lista[j + 1] = lista[j + 1], lista[j]
+            
             return lista
     else:
         print("El fichero no existe.")
